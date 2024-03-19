@@ -1893,7 +1893,11 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
+<<<<<<< Updated upstream
   field of view: 77
+=======
+  field of view: 70
+>>>>>>> Stashed changes
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -1992,7 +1996,11 @@ MonoBehaviour:
   m_LookAt: {fileID: 1223088205}
   m_Follow: {fileID: 1223088205}
   m_Lens:
+<<<<<<< Updated upstream
     FieldOfView: 77
+=======
+    FieldOfView: 70
+>>>>>>> Stashed changes
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -4321,7 +4329,7 @@ GameObject:
   - component: {fileID: 655778995}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7864,7 +7872,7 @@ GameObject:
   - component: {fileID: 1223088206}
   m_Layer: 0
   m_Name: PlayerSprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
