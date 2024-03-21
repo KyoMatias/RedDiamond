@@ -2,12 +2,9 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollision))]
-public class PlayerCollider : MonoBehaviour
+public class PlayerCollision : MonoBehaviour
 {
-    private BoxCollision m_playerCollider
-    {
-        get { return GetComponent<BoxCollision>(); }
-    }
+    private BoxCollision m_playerCollider => GetComponent<BoxCollision>();
 
     private void Update()
     {

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Shape : MonoBehaviour
 {
-  public virtual void DrawCollider()
-  {
+    public virtual void DrawCollider()
+    {
 
-  }
+    }
 }
