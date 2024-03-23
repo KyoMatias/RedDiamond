@@ -1,5 +1,3 @@
-using UnityEngine.UIElements;
-
 public static class CollisionLibrary
 {
     public static bool CheckCollision(Shape shapeA, Shape shapeB)
