@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    [SerializeField] private Shape _playerCollider;
-    private List<Shape> m_colliders = new List<Shape>();
+    [SerializeField] private BoxCollision _playerCollider;
+    private List<BoxCollision> m_colliders = new List<BoxCollision>();
 
     [SerializeField] private BoolVariable _canPlayerMove;
 
-    [SerializeField] private BoolGameEvent _canPlayerInteract;
+    private Vector3 m_playerPosition;
+    private float m_playerExtentsX;
+    private float m_playerExtentsZ;
 
+    private Vector3 m_colliderPosition;
+
+    private Vector3 m_slideDistance;
+    private Vector3 m_slideDirection;
+    private Vector3 m_direction;
+
+    [SerializeField] private BoolGameEvent _canPlayerInteract;
     public Interactable InteractableObject;
 
     private void OnEnable()
     {
-        m_colliders.AddRange(FindObjectsOfType<Shape>());
+        m_colliders.AddRange(FindObjectsOfType<BoxCollision>());
     }
 
     private void FixedUpdate()
@@ -25,10 +34,10 @@ public class PlayerCollision : MonoBehaviour
 
     private void HandleCollision()
     {
-        foreach (Shape collider in m_colliders) 
+        foreach (BoxCollision collider in m_colliders)
         {
             if (collider == _playerCollider) continue;
-            
+
             if (!CollisionLibrary.CheckCollision(_playerCollider, collider))
             {
                 InteractableObject = null;
@@ -59,9 +68,10 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
+
     private void OnDrawGizmos()
     {
-        var Colliders = FindObjectsOfType<Shape>();
+        var Colliders = FindObjectsOfType<BoxCollision>();
 
         foreach (var c in Colliders)
         {
