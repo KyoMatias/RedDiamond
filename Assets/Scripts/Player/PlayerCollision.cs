@@ -4,26 +4,18 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    private Transform m_player;
     [SerializeField] private BoxCollision _playerCollider;
     private List<BoxCollision> m_colliders = new List<BoxCollision>();
 
-    [SerializeField] private BoolVariable _canPlayerMove;
-
-    private Vector3 m_playerPosition;
-    private float m_playerExtentsX;
-    private float m_playerExtentsZ;
-
-    private Vector3 m_colliderPosition;
-
-    private Vector3 m_slideDistance;
-    private Vector3 m_slideDirection;
-    private Vector3 m_direction;
+    [SerializeField] private float _pushDistance;
 
     [SerializeField] private BoolGameEvent _canPlayerInteract;
     public Interactable InteractableObject;
 
     private void OnEnable()
     {
+        m_player = _playerCollider.transform.parent;
         m_colliders.AddRange(FindObjectsOfType<BoxCollision>());
     }
 
@@ -44,14 +36,33 @@ public class PlayerCollision : MonoBehaviour
 
                 _canPlayerInteract.Raise(false);
 
-                _canPlayerMove.Value = true;
-
                 continue;
             }
 
             if (!collider.IsInteractable)
             {
-                _canPlayerMove.Value = false;
+                Vector3 movement = Vector3.zero;
+
+                float differenceX = m_player.position.x - collider.transform.position.x;
+                float differenceZ = m_player.position.z - collider.transform.position.z;
+
+                if (Mathf.Abs(differenceX)
+                    > Mathf.Abs(differenceZ))
+                {
+                    movement = new Vector3(
+                        0f,
+                        0f,
+                        Mathf.Sign(differenceZ) * _pushDistance);
+                }
+                else
+                {
+                    movement = new Vector3(
+                        Mathf.Sign(differenceX) * _pushDistance,
+                        0f,
+                        0f);
+                }
+
+                m_player.transform.position += movement;
 
                 continue;
             }
@@ -60,23 +71,12 @@ public class PlayerCollision : MonoBehaviour
 
             if (InteractableObject == null) continue;
 
-            InteractableObject.GrabInteractableObjectName();
-
             _canPlayerInteract.Raise(true);
+
+
+            InteractableObject.GrabInteractableObjectName();
 
             break;
         }
     }
-
-
-    private void OnDrawGizmos()
-    {
-        var Colliders = FindObjectsOfType<BoxCollision>();
-
-        foreach (var c in Colliders)
-        {
-            c.DrawCollider();
-        }
-    }
 }
-

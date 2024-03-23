@@ -1,9 +1,9 @@
-using TMPro;
-using UnityEditor;
 using UnityEngine;
 
 public class BoxCollision : Shape
 {
+    [SerializeField] private bool _showCollider;
+
     private float m_width => transform.localScale.x;
     private float m_height => transform.localScale.y;
     private float m_length => transform.localScale.z;
@@ -75,7 +75,7 @@ public class BoxCollision : Shape
     }
 
     public override void DrawCollider()
-{
+    {
         base.DrawCollider();
 
         DrawLine(m_frontSide);
@@ -88,13 +88,17 @@ public class BoxCollision : Shape
     {
         base.DrawLine(vectorArray);
 
-        for (int i = vectorArray.Length - 1; i >= 0; i--)
+        for (int i = 0; i < vectorArray.Length; i++)
         {
             var firstPoint = vectorArray[i];
-
             var secondPoint = vectorArray[(i + 1) % vectorArray.Length];
-
             Gizmos.DrawLine(firstPoint, secondPoint);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_showCollider)
+            DrawCollider();
     }
 }
