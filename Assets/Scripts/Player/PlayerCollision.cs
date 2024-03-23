@@ -73,7 +73,6 @@ public class PlayerCollision : MonoBehaviour
 
             _canPlayerInteract.Raise(true);
 
-
             InteractableObject.GrabInteractableObjectName();
 
             break;

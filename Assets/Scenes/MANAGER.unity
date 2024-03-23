@@ -346,7 +346,7 @@ PrefabInstance:
     - target: {fileID: 3787540155834493996, guid: 7109ed0cdad2de1478cc2fff5af6829d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.02
       objectReference: {fileID: 0}
     - target: {fileID: 3787540155834493996, guid: 7109ed0cdad2de1478cc2fff5af6829d,
         type: 3}
@@ -392,6 +392,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955519597067493404, guid: 7109ed0cdad2de1478cc2fff5af6829d,
+        type: 3}
+      propertyPath: ShoulderOffset.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955519597067493404, guid: 7109ed0cdad2de1478cc2fff5af6829d,
+        type: 3}
+      propertyPath: ShoulderOffset.z
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206978492528428024, guid: 7109ed0cdad2de1478cc2fff5af6829d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.33099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206978492528428024, guid: 7109ed0cdad2de1478cc2fff5af6829d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206978492528428024, guid: 7109ed0cdad2de1478cc2fff5af6829d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206978492528428024, guid: 7109ed0cdad2de1478cc2fff5af6829d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.85065085
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206978492528428024, guid: 7109ed0cdad2de1478cc2fff5af6829d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5257311
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1573,7 +1608,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1886244878}
     - target: {fileID: 8541382544463609868, guid: faa99d7a474d3794aa8cc6f679382283,
         type: 3}
       propertyPath: m_Name
