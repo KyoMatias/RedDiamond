@@ -2,35 +2,103 @@ using UnityEngine;
 
 public class BoxCollision : Shape
 {
-  private float m_width => transform.localScale.x;
-  private float m_height => transform.localScale.y;
-  private float m_length => transform.localScale.z;
+    [SerializeField] private bool _showCollider;
 
-  public float MinimumX => transform.position.x - (m_width * .5f);
-  public float MaximumX => transform.position.x + (m_width * .5f);
+    private float m_width => transform.localScale.x;
+    private float m_height => transform.localScale.y;
+    private float m_length => transform.localScale.z;
 
-  public float MinimumY => transform.position.y - (m_height * .5f);
-  public float MaximumY => transform.position.y + (m_height * .5f);
+    public float ExtentsX => (m_width * .5f);
+    public float ExtentsY => (m_height * .5f);
+    public float ExtentsZ => (m_length * .5f);
 
-  public float MinimumZ => transform.position.z - (m_length * .5f);
-  public float MaximumZ => transform.position.z + (m_length * .5f); 
+    public float MinimumX => transform.position.x - ExtentsX;
+    public float MaximumX => transform.position.x + ExtentsX;
+    public float MinimumY => transform.position.y - ExtentsY;
+    public float MaximumY => transform.position.y + ExtentsY;
+    public float MinimumZ => transform.position.z - ExtentsZ;
+    public float MaximumZ => transform.position.z + ExtentsZ;
 
-  public Vector2 point1 => new Vector3(MinimumX, MinimumY);
-  public Vector2 point2 => new Vector3(MinimumX, MaximumY);
-  public Vector2 point3 => new Vector3(MaximumX, MaximumY);
-  public Vector2 point4 => new Vector3(MaximumX, MinimumY);
+    private void OnEnable()
+    {
+        ShapeType = ShapeType.Box;
+    }
 
-  public override void DrawCollider()
-  {
-      base.DrawCollider();
+    private Vector3[] m_frontSide
+    {
+        get
+        {
+            return new Vector3[]
+            {
+            new Vector3(MinimumX, MinimumY, MinimumZ),
+            new Vector3(MinimumX, MaximumY, MinimumZ),
+            new Vector3(MaximumX, MaximumY, MinimumZ),
+            new Vector3(MaximumX, MinimumY, MinimumZ)
+            };
+        }
+    }
 
-      var VectorArray = new Vector2[] { point1, point2, point3, point4 };
+    private Vector3[] m_backSide
+    {
+        get
+        {
+            return new Vector3[]
+            {
+            new Vector3(MinimumX, MinimumY, MaximumZ),
+            new Vector3(MinimumX, MaximumY, MaximumZ),
+            new Vector3(MaximumX, MaximumY, MaximumZ),
+            new Vector3(MaximumX, MinimumY, MaximumZ)
+            };
+        }
+    }
 
-      for (int i = 0; i < VectorArray.Length; i++)
-      {
-          var v = VectorArray[i];
-          var v2 = VectorArray[(i + 1) % VectorArray.Length];
-          Gizmos.DrawLine(v, v2);
-      }
-  }
+    private Vector3[] m_leftSide
+    {
+        get
+        {
+            return new Vector3[]
+            {
+                m_frontSide[0], m_frontSide[1], m_backSide[1], m_backSide[0]
+            };
+        }
+    }
+
+    private Vector3[] m_rightSide
+    {
+        get
+        {
+            return new Vector3[]
+            {
+                m_frontSide[2], m_frontSide[3], m_backSide[3], m_backSide[2]
+            };
+        }
+    }
+
+    public override void DrawCollider()
+    {
+        base.DrawCollider();
+
+        DrawLine(m_frontSide);
+        DrawLine(m_backSide);
+        DrawLine(m_rightSide);
+        DrawLine(m_leftSide);
+    }
+
+    public override void DrawLine(Vector3[] vectorArray)
+    {
+        base.DrawLine(vectorArray);
+
+        for (int i = 0; i < vectorArray.Length; i++)
+        {
+            var firstPoint = vectorArray[i];
+            var secondPoint = vectorArray[(i + 1) % vectorArray.Length];
+            Gizmos.DrawLine(firstPoint, secondPoint);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_showCollider)
+            DrawCollider();
+    }
 }
