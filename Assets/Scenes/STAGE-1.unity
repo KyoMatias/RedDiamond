@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsInteractable>k__BackingField: 0
-  _showCollider: 1
+  _showCollider: 0
 --- !u!1001 &81637215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsInteractable>k__BackingField: 0
-  _showCollider: 1
+  _showCollider: 0
 --- !u!1 &289125710
 GameObject:
   m_ObjectHideFlags: 0
@@ -6407,7 +6407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsInteractable>k__BackingField: 0
-  _showCollider: 1
+  _showCollider: 0
 --- !u!4 &1369502703 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8174a40fe958136499054a6cbf8d632f,
@@ -7624,7 +7624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsInteractable>k__BackingField: 0
-  _showCollider: 1
+  _showCollider: 0
 --- !u!1001 &1729673046
 PrefabInstance:
   m_ObjectHideFlags: 0

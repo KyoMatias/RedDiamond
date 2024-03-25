@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator _animator;
     private string m_currentState;
     private string m_newState;
+    private float m_playbackSpeed;
 
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _crouchMultiplier;
@@ -19,9 +20,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_nextPosition;
     private float m_step;
 
-    private void Update()
+    private void Start()
     {
         m_currentMovementSpeed = _movementSpeed;
+
+        m_playbackSpeed = 1f;
     }
 
     private void FixedUpdate()
@@ -39,33 +42,40 @@ public class PlayerMovement : MonoBehaviour
 
         if (m_inputVector == Vector2.zero)
         {
-            UpdateAnimator(m_currentState, 0, 8f);
+            m_playbackSpeed = 0f;
+
+            UpdateAnimator(m_currentState, m_playbackSpeed, 0f);
 
             m_movementVector = Vector3.zero;
+
             return;
         }
-
-        m_newState = "Player";
-
-        if (m_inputVector.y > 0)
+        else
         {
-            m_newState += "North";
-        }
-        else if (m_inputVector.y < 0)
-        {
-            m_newState += "South";
+            m_newState = "Player";
+
+            if (m_inputVector.y > 0)
+            {
+                m_newState += "North";
+            }
+            else if (m_inputVector.y < 0)
+            {
+                m_newState += "South";
+            }
+
+            if (m_inputVector.x > 0)
+            {
+                m_newState += "East";
+            }
+            else if (m_inputVector.x < 0)
+            {
+                m_newState += "West";
+            }
+
+            m_playbackSpeed = m_isPlayerCrouching ? _crouchMultiplier : 1f;
         }
 
-        if (m_inputVector.x > 0)
-        {
-            m_newState += "East";
-        }
-        else if (m_inputVector.x < 0)
-        {
-            m_newState += "West";
-        }
-
-        UpdateAnimator(m_newState);
+        UpdateAnimator(m_newState, m_playbackSpeed, 0f);
 
         m_movementVector = new Vector3(m_inputVector.x, 0, m_inputVector.y);
     }
@@ -74,40 +84,26 @@ public class PlayerMovement : MonoBehaviour
     {
         m_isPlayerCrouching = input.ReadValueAsButton();
 
-        if (!m_isPlayerCrouching)
-        {
-            UpdateAnimator(m_currentState);
+        m_playbackSpeed = m_inputVector != Vector2.zero ?
+            (m_isPlayerCrouching ? _crouchMultiplier : 1f) : 0f;
 
-            m_currentMovementSpeed = _movementSpeed;
+        m_currentMovementSpeed = m_isPlayerCrouching ?
+            _movementSpeed * _crouchMultiplier : _movementSpeed;
 
-            return;
-        }
-
-        UpdateAnimator(m_currentState, .3f);
-
-        m_currentMovementSpeed = _movementSpeed * _crouchMultiplier;
+        UpdateAnimator(m_currentState, m_playbackSpeed, 0f);
     }
 
     private void UpdateAnimator(string animationState, float playbackSpeed = 1f, float frameNumber = 0f)
     {
-        if (playbackSpeed >= 0f)
-        {
-            _animator.speed = playbackSpeed;
+        AnimationClip clip = _animator.GetCurrentAnimatorClipInfo(0)[0].clip;
 
-            AnimationClip clip = _animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+        float normalizedTime = frameNumber / clip.frameRate / clip.length;
 
-            float normalizedTime = frameNumber / clip.frameRate / clip.length;
-
-            normalizedTime = Mathf.Clamp01(normalizedTime);
-
-            _animator.Play(animationState, 0, normalizedTime);
-
-            return;
-        }
+        normalizedTime = Mathf.Clamp01(normalizedTime);
 
         _animator.speed = playbackSpeed;
 
-        _animator.Play(animationState);
+        _animator.Play(animationState, 0, normalizedTime);
 
         m_currentState = animationState;
     }
