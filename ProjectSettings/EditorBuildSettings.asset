@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/STAGE-1.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/MANAGER.unity
+    guid: 52ebf6f02afa63a428fd5430c4348488
+  - enabled: 1
+    path: Assets/Scenes/LOCK-1.unity
+    guid: ff61334c0a4486446bc0a04e7455a574
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: cdd6cead7aa57684d87ef22666a893a6,
       type: 2}

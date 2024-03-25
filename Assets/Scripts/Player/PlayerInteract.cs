@@ -14,7 +14,6 @@ public class PlayerInteract : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("This was called!");
         _playerCollision.InteractableObject.Interact();
     }
 
