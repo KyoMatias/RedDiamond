@@ -404,7 +404,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -69, y: -7, z: -25}
-  m_LocalScale: {x: 2, y: 10, z: 140}
+  m_LocalScale: {x: 5, y: 10, z: 140}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1737913860}
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsInteractable>k__BackingField: 0
-  _showCollider: 0
+  _showCollider: 1
 --- !u!1001 &81637215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1418,7 +1418,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 51, y: -7, z: -25}
-  m_LocalScale: {x: 2, y: 10, z: 140}
+  m_LocalScale: {x: 5, y: 10, z: 140}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1737913860}
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsInteractable>k__BackingField: 0
-  _showCollider: 0
+  _showCollider: 1
 --- !u!1 &289125710
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,7 +2095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsInteractable>k__BackingField: 1
-  _showCollider: 1
+  _showCollider: 0
 --- !u!1001 &368557462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6389,7 +6389,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: -7, z: 43}
-  m_LocalScale: {x: 125, y: 10, z: 2}
+  m_LocalScale: {x: 125, y: 10, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1737913860}
@@ -6407,7 +6407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsInteractable>k__BackingField: 0
-  _showCollider: 0
+  _showCollider: 1
 --- !u!4 &1369502703 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8174a40fe958136499054a6cbf8d632f,
@@ -7606,7 +7606,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: -7, z: -93.5}
-  m_LocalScale: {x: 125, y: 10, z: 2}
+  m_LocalScale: {x: 125, y: 10, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1737913860}
@@ -7624,7 +7624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsInteractable>k__BackingField: 0
-  _showCollider: 0
+  _showCollider: 1
 --- !u!1001 &1729673046
 PrefabInstance:
   m_ObjectHideFlags: 0
